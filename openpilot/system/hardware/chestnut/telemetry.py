@@ -1,10 +1,14 @@
 import struct
+import socket
+import time
 
 import usb1
 
 import openpilot.cereal.messaging as messaging
 from openpilot.cereal.services import SERVICE_LIST
 from openpilot.common.hardware.usb import CHESTNUT_USB_IDS
+
+CHESTNUT_STATE_SOCKET = "\0chestnutState"
 
 
 class ChestnutUsb:
@@ -44,19 +48,26 @@ class ChestnutUsb:
 
 def _chestnut_telemetry_thread(end_event) -> None:
   pm = messaging.PubMaster(["chestnutState"])
-  sm = messaging.SubMaster(["chestnutGpuState"])
+  sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+  sock.bind(CHESTNUT_STATE_SOCKET)
+  sock.setblocking(False)
   usb = ChestnutUsb()
   dt = 1. / SERVICE_LIST["chestnutState"].frequency
+  gpu_state = None
+  gpu_state_time = 0.
   while not end_event.wait(dt):
     try:
-      sm.update(0)
+      try:
+        while data := sock.recv(4096):
+          gpu_state = messaging.log_from_bytes(data)
+          gpu_state_time = time.monotonic()
+      except BlockingIOError:
+        pass
       msg = messaging.new_message("chestnutState")
+      if gpu_state is not None and gpu_state.valid and time.monotonic() - gpu_state_time < 1.:
+        msg.chestnutState = gpu_state.chestnutState
       state = msg.chestnutState
       state.supplyVoltage, state.supplyCurrent, state.supplyFault, state.pcieLtssm = usb.read()
-      if sm.alive["chestnutGpuState"] and sm.valid["chestnutGpuState"]:
-        gpu = sm["chestnutGpuState"]
-        for field in ("tempC", "memoryTempC", "powerDrawW", "powerLimitW", "gpuUsagePercent", "gpuClockMhz", "fanSpeedRpm"):
-          setattr(state, field, getattr(gpu, field))
       msg.valid = True
       pm.send("chestnutState", msg)
     except Exception:

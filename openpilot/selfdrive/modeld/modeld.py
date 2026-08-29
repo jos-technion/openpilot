@@ -6,6 +6,7 @@ import os
 os.environ['GMMU'] = '0' # for chestnut fast loading, noop for qcom
 from tinygrad.tensor import Tensor
 from tinygrad.device import Device
+import socket
 import threading
 import time
 import numpy as np
@@ -32,6 +33,7 @@ from openpilot.selfdrive.modeld.fill_model_msg import fill_model_msg, fill_drivi
 from openpilot.common.file_chunker import open_file_chunked
 from openpilot.selfdrive.modeld.constants import ModelConstants, Plan
 from openpilot.selfdrive.modeld.helpers import chestnut_present, chestnut_compiled, modeld_pkl_path, get_tg_input_devices, load_oob
+from openpilot.system.hardware.chestnut.telemetry import CHESTNUT_STATE_SOCKET
 
 PROCESS_NAME = "openpilot.selfdrive.modeld.modeld"
 SEND_RAW_PRED = os.getenv('SEND_RAW_PRED')
@@ -70,10 +72,11 @@ def get_action_from_model(model_output: dict[str, np.ndarray], prev_action: log.
                                 shouldStop=bool(stop))
 
 
-class ChestnutGpuState:
-  def __init__(self, pm: PubMaster, big: bool):
-    self.pm = pm
+class ChestnutState:
+  def __init__(self, big: bool):
     self.big = big
+    self.socket = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+    self.socket.setblocking(False)
     self.valid = True
     self.sends = 0
     self.metrics = {}
@@ -84,8 +87,8 @@ class ChestnutGpuState:
     return smu._send_msg(smu.smu_mod.PPSMC_MSG_GetPptLimit, 0, read_back_arg=True, timeout=100)
 
   def send(self) -> None:
-    msg = messaging.new_message('chestnutGpuState')
-    state = msg.chestnutGpuState
+    msg = messaging.new_message('chestnutState')
+    state = msg.chestnutState
     self.sends += 1
     if self.big and "AMD" in Device._opened_devices and self.sends % 100 == 1:
       try:
@@ -104,7 +107,7 @@ class ChestnutGpuState:
         self.valid = True
       except Exception:
         if self.valid:
-          cloudlog.exception("chestnut gpu state read failed")
+          cloudlog.exception("chestnut state read failed")
         self.valid = False
         self.metrics.clear()
     if self.big:
@@ -112,7 +115,10 @@ class ChestnutGpuState:
         setattr(state, k, v)
 
     msg.valid = self.big and bool(self.metrics)
-    self.pm.send('chestnutGpuState', msg)
+    try:
+      self.socket.sendto(msg.to_bytes(), CHESTNUT_STATE_SOCKET)
+    except OSError:
+      pass
 
 
 class FrameMeta:
@@ -262,13 +268,13 @@ def main(demo=False):
   cloudlog.warning(f"models loaded in {time.monotonic() - st:.1f}s, modeld starting")
 
   # messaging
-  pub_socks = ["modelV2", "drivingModelData", "cameraOdometry"] + (["chestnutGpuState"] if CHESTNUT else [])
+  pub_socks = ["modelV2", "drivingModelData", "cameraOdometry"]
   pm = PubMaster(pub_socks)
   sm = SubMaster(["deviceState", "carState", "narrowRoadCameraState", "extrinsicsCalibration", "driverMonitoringState", "carControl", "lateralDelay"])
 
   publish_state = PublishState()
   params = Params()
-  chestnut_state = ChestnutGpuState(pm, model.chestnut) if CHESTNUT else None
+  chestnut_state = ChestnutState(model.chestnut) if CHESTNUT else None
 
   # setup filter to track dropped frames
   frame_dropped_filter = FirstOrderFilter(0., 10., 1. / ModelConstants.MODEL_RUN_FREQ)
@@ -377,7 +383,7 @@ def main(demo=False):
     mt1 = time.perf_counter()
     try:
       send_chestnut = (chestnut_state is not None and
-                       run_count % round(ModelConstants.MODEL_RUN_FREQ / SERVICE_LIST['chestnutGpuState'].frequency) == 0)
+                       run_count % round(ModelConstants.MODEL_RUN_FREQ / SERVICE_LIST['chestnutState'].frequency) == 0)
       model_output = model.run(bufs, transforms, inputs, chestnut_state.send if send_chestnut else None)
     except Exception:
       if not params.get_bool("ChestnutActive"):
