@@ -494,7 +494,6 @@ def main():
 
   if COMMA_HARDWARE:
     threads.append(threading.Thread(target=touch_thread, args=(end_event,)))
-  if HARDWARE.get_device_type() == "mici":
     threads.append(threading.Thread(target=chestnut_telemetry_thread, args=(end_event,)))
 
   for t in threads:
