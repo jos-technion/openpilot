@@ -42,7 +42,7 @@ class ChestnutUsb:
     return voltage, current, fault, pcie
 
 
-def chestnut_telemetry_thread(end_event) -> None:
+def _chestnut_telemetry_thread(end_event) -> None:
   pm = messaging.PubMaster(["chestnutState"])
   sm = messaging.SubMaster(["chestnutGpuState"])
   usb = ChestnutUsb()
@@ -62,3 +62,11 @@ def chestnut_telemetry_thread(end_event) -> None:
     except Exception:
       usb.close()
   usb.close()
+
+
+def chestnut_telemetry_thread(end_event) -> None:
+  while not end_event.is_set():
+    try:
+      _chestnut_telemetry_thread(end_event)
+    except Exception:
+      end_event.wait(1.)
