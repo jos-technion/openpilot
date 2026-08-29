@@ -1,5 +1,4 @@
 import struct
-import socket
 import time
 
 import usb1
@@ -8,7 +7,7 @@ import openpilot.cereal.messaging as messaging
 from openpilot.cereal.services import SERVICE_LIST
 from openpilot.common.hardware.usb import CHESTNUT_USB_IDS
 
-CHESTNUT_STATE_SOCKET = "\0chestnutState"
+CHESTNUT_STATE_MODELD = "chestnutStateModeld"
 
 
 class ChestnutUsb:
@@ -48,21 +47,16 @@ class ChestnutUsb:
 
 def _chestnut_telemetry_thread(end_event) -> None:
   pm = messaging.PubMaster(["chestnutState"])
-  sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-  sock.bind(CHESTNUT_STATE_SOCKET)
-  sock.setblocking(False)
+  modeld_sock = messaging.sub_sock(CHESTNUT_STATE_MODELD, conflate=True)
   usb = ChestnutUsb()
   dt = 1. / SERVICE_LIST["chestnutState"].frequency
   gpu_state = None
   gpu_state_time = 0.
   while not end_event.wait(dt):
     try:
-      try:
-        while data := sock.recv(4096):
-          gpu_state = messaging.log_from_bytes(data)
-          gpu_state_time = time.monotonic()
-      except BlockingIOError:
-        pass
+      if (state := messaging.recv_one_or_none(modeld_sock)) is not None:
+        gpu_state = state
+        gpu_state_time = time.monotonic()
       msg = messaging.new_message("chestnutState")
       if gpu_state is not None and gpu_state.valid and time.monotonic() - gpu_state_time < 1.:
         msg.chestnutState = gpu_state.chestnutState

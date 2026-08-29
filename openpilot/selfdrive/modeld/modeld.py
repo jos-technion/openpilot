@@ -6,7 +6,6 @@ import os
 os.environ['GMMU'] = '0' # for chestnut fast loading, noop for qcom
 from tinygrad.tensor import Tensor
 from tinygrad.device import Device
-import socket
 import threading
 import time
 import numpy as np
@@ -33,7 +32,7 @@ from openpilot.selfdrive.modeld.fill_model_msg import fill_model_msg, fill_drivi
 from openpilot.common.file_chunker import open_file_chunked
 from openpilot.selfdrive.modeld.constants import ModelConstants, Plan
 from openpilot.selfdrive.modeld.helpers import chestnut_present, chestnut_compiled, modeld_pkl_path, get_tg_input_devices, load_oob
-from openpilot.system.hardware.chestnut.telemetry import CHESTNUT_STATE_SOCKET
+from openpilot.system.hardware.chestnut.telemetry import CHESTNUT_STATE_MODELD
 
 PROCESS_NAME = "openpilot.selfdrive.modeld.modeld"
 SEND_RAW_PRED = os.getenv('SEND_RAW_PRED')
@@ -75,8 +74,7 @@ def get_action_from_model(model_output: dict[str, np.ndarray], prev_action: log.
 class ChestnutState:
   def __init__(self, big: bool):
     self.big = big
-    self.socket = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-    self.socket.setblocking(False)
+    self.pm = PubMaster([CHESTNUT_STATE_MODELD])
     self.valid = True
     self.sends = 0
     self.metrics = {}
@@ -115,10 +113,7 @@ class ChestnutState:
         setattr(state, k, v)
 
     msg.valid = self.big and bool(self.metrics)
-    try:
-      self.socket.sendto(msg.to_bytes(), CHESTNUT_STATE_SOCKET)
-    except OSError:
-      pass
+    self.pm.send(CHESTNUT_STATE_MODELD, msg)
 
 
 class FrameMeta:
