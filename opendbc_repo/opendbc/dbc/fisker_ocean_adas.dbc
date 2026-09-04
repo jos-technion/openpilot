@@ -251,6 +251,34 @@ BO_ 532 VCU_0x214: 16 GW
  SG_ VCU_214_SSecOC_MAC_Byte1 : 87|8@0+ (1,0) [0|255] ""  ADASBUS_Virtual_ECU
  SG_ VCU_214_SSecOC_MAC_Byte2 : 95|8@0+ (1,0) [0|255] ""  ADASBUS_Virtual_ECU
 
+BO_ 788 ADAS_0x314: 8 ADAS
+ SG_ ADAS_314_CheckSum : 7|8@0+ (1,0) [0|255] ""  FCM,GW
+ SG_ ADAS_314_AliveCounter : 11|4@0+ (1,0) [0|14] ""  FCM,GW
+ SG_ ADAS_ESAState : 19|4@0+ (1,0) [0|15] ""  GW
+ SG_ ADAS_LKASts : 23|4@0+ (1,0) [0|15] ""  GW
+ SG_ ADAS_ELKASts : 26|4@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_LCA_Sts : 30|4@0+ (1,0) [0|15] ""  GW
+ SG_ ADAS_LCA_Maneuver_Status : 31|1@0+ (1,0) [0|1] ""  GW
+ SG_ ADAS_APASts : 38|4@0+ (1,0) [0|15] ""  GW
+ SG_ ADAS_WSPPASts : 42|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_DOW_Sts : 45|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_BSDSts : 50|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_DCAASts : 53|3@0+ (1,0) [0|7] ""  FCM,GW
+ SG_ ADAS_AHBA_Sts : 55|2@0+ (1,0) [0|3] ""  GW
+ SG_ ADAS_AHBA_BeamDecisRsn : 60|5@0+ (1,0) [0|15] ""  GW
+
+BO_ 789 ADAS_0x315: 8 ADAS
+ SG_ ADAS_DOW_ThreatIDLeft : 7|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_DOW_ThreatIDRight : 15|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_DOW_CID_LeDispReq : 18|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_DOW_CID_RiDispReq : 21|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_BSDLeftThreatID : 31|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_BSDRightThreatID : 39|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_BSD_CID_LeDispReq : 42|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_BSD_CID_RiDispReq : 45|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_DCAA_WarnLvlReq : 51|4@0+ (1,0) [0|15] ""  GW
+ SG_ ADAS_DCAA_GazeOnWarnReq : 52|1@0+ (1,0) [0|1] ""  GW
+
 BO_ 791 ADAS_0x317: 8 ADAS
  SG_ ADAS_317_CheckSum : 7|8@0+ (1,0) [0|255] ""  GW
  SG_ ADAS_317_AliveCounter : 11|4@0+ (1,0) [0|14] ""  GW
@@ -286,6 +314,24 @@ BO_ 792 ESP_0x318: 8 GW
  SG_ ESP_AvlIndcn_HDC : 60|1@0+ (1,0) [0|1] ""  ADAS
  SG_ ESP_NoBrkP : 61|1@0+ (1,0) [0|1] ""  ADAS
  SG_ ESP_RDAEnaFlg : 62|1@0+ (1,0) [0|1] ""  ADAS
+
+BO_ 794 ADAS_0x31A: 8 ADAS
+ SG_ ADAS_31A_CheckSum : 7|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_31A_AliveCounter : 11|4@0+ (1,0) [0|14] ""  GW
+ SG_ ADAS_RAEBAvl : 16|1@0+ (1,0) [0|1] ""  GW
+ SG_ ADAS_FACM_TelltaleReq : 18|2@0+ (1,0) [0|3] ""  GW
+ SG_ ADAS_BACM_WarnSide : 21|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_BrakeIntrvntnSt : 23|2@0+ (1,0) [0|3] ""  GW
+ SG_ ADAS_AEB_Typ : 26|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_FACM_SenstvtyPrmpt : 27|1@0+ (1,0) [0|1] ""  GW
+ SG_ ADAS_AEBWarnSts : 30|3@0+ (1,0) [0|7] ""  GW
+ SG_ ADAS_AEB_RAEB_WarnReq : 31|1@0+ (1,0) [0|1] ""  GW
+ SG_ ADAS_RAEB_ThreatID : 39|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_AEBThreatID : 47|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_BACMThreatID : 55|8@0+ (1,0) [0|255] ""  GW
+ SG_ ADAS_BSM_ELKA_TelltaleReq : 59|3@0+ (1,0) [0|4] ""  GW
+ SG_ ADAS_ESA_TelltaleReq : 61|2@0+ (1,0) [0|3] ""  GW
+ SG_ ADAS_ELKA_TelltaleReq : 63|2@0+ (1,0) [0|3] ""  GW
 
 BO_ 796 ADAS_0x31C: 8 ADAS
  SG_ ADAS_AccTrgSpdDisp : 23|8@0+ (1,0) [0|255] ""  GW
@@ -623,7 +669,31 @@ CM_ SG_ 532 VCU_214_SSecOC_MAC_Byte0 "Short SecOC MAC signal byte 0 on CAN";
 CM_ SG_ 532 VCU_214_SSecOC_MAC_Byte1 "Short SecOC MAC signal byte 1 on CAN";
 CM_ SG_ 532 VCU_214_SSecOC_MAC_Byte2 "Short SecOC MAC signal byte 2 on CAN";
 Resolution should be 360/254 degrees";
+CM_ BO_ 788 "Messages for ICC (IBUS 2) and Event Data Recorder (Chassis Bus)";
+CM_ SG_ 788 ADAS_314_CheckSum "ADAS_314_Message checksum (  E2E data ID:0x4E)";
+CM_ SG_ 788 ADAS_314_AliveCounter "ADAS_314_Message counter";
+CM_ SG_ 788 ADAS_LKASts "This signal indicates the lane keeping system state. It is used to illuminate the lane line ego vehicle is about to cross.";
+CM_ SG_ 788 ADAS_ELKASts "This signal indicates the emergency lane keeping system state. It is used to illuminate the lane line ego vehicle is about to cross.";
+CM_ SG_ 788 ADAS_LCA_Sts "Lane Change Assist status";
+CM_ SG_ 788 ADAS_LCA_Maneuver_Status "Indication to the driver when LCA maneuver is suppressed";
+CM_ SG_ 788 ADAS_APASts "Advanced Park Assist (APA) status";
+CM_ SG_ 788 ADAS_WSPPASts "Wheel Scratch Prevention feature State";
+CM_ SG_ 788 ADAS_DOW_Sts "Door Open Warning (DOW) status";
+CM_ SG_ 788 ADAS_BSDSts "Blind Spot Detection (BSD) feature status";
+CM_ SG_ 788 ADAS_DCAASts "Driver Condition and Attention Assist (DCAA) status";
+CM_ SG_ 788 ADAS_AHBA_Sts "Auto high beam status";
+CM_ SG_ 788 ADAS_AHBA_BeamDecisRsn "Beam Decision Reason to request low beam or high beam 
 For Development use only";
+CM_ SG_ 789 ADAS_DOW_ThreatIDLeft "Object ID of the left threat";
+CM_ SG_ 789 ADAS_DOW_ThreatIDRight "Object ID of the right threat";
+CM_ SG_ 789 ADAS_DOW_CID_LeDispReq "Door Open Warning (DOW) display request on CID left side (central screen)";
+CM_ SG_ 789 ADAS_DOW_CID_RiDispReq "Door Open Warning (DOW) display request on CID right side (central screen)";
+CM_ SG_ 789 ADAS_BSDLeftThreatID "BSD Threat Object ID Left side";
+CM_ SG_ 789 ADAS_BSDRightThreatID "BSD Threat Object ID Right Side";
+CM_ SG_ 789 ADAS_BSD_CID_LeDispReq "Blind Spot Detection (BSD) display request on CID left side (central screen)";
+CM_ SG_ 789 ADAS_BSD_CID_RiDispReq "Blind Spot Detection (BSD) display request on CID right side (central screen)";
+CM_ SG_ 789 ADAS_DCAA_WarnLvlReq "Driver Condition and Attention Assist (DCAA) warning level request";
+CM_ SG_ 789 ADAS_DCAA_GazeOnWarnReq "Driver Condition and Attention Assist (DCAA) gaze on warning request. Reserved for future development, could be the additional requirement to launch the vehicle after long ACC stop (> 3 sec) ";
 CM_ SG_ 791 ADAS_317_CheckSum "ADAS_0x317_message checksum (  E2E data ID:0xCD)";
 CM_ SG_ 791 ADAS_317_AliveCounter "ADAS_317_Message counter";
 CM_ SG_ 791 ADAS_LeMirrWarnSrc "Left mirror warning source (or reason). Signal used as information only";
@@ -656,7 +726,22 @@ CM_ SG_ 792 ESP_CtrlSts_HDC "Indicate that the HDC is on/off or working, and the
 CM_ SG_ 792 ESP_AvlIndcn_HDC "Effective bit of HDC indicating HDC is available or not.";
 CM_ SG_ 792 ESP_NoBrkP "When the vehicle is stationary, whether the function has braking force or not, whether it is braking.no brake pressure applied; generally it regards wheel cylinder presure.";
 CM_ SG_ 792 ESP_RDAEnaFlg "ESP remote driving function enable flag position";
+CM_ SG_ 794 ADAS_31A_CheckSum "ADAS_31A_Message Verification (E2E data ID: 0x37)";
+CM_ SG_ 794 ADAS_31A_AliveCounter "ESP 31A_Message counterESP_31A_AliveCounter";
+CM_ SG_ 794 ADAS_RAEBAvl "Indicates tha the Rear AEB is ready (available)";
+CM_ SG_ 794 ADAS_FACM_TelltaleReq "FACM telltale request";
+CM_ SG_ 794 ADAS_BACM_WarnSide "BACM warning side";
+CM_ SG_ 794 ADAS_BrakeIntrvntnSt "Brake Assist status ADAS_BrkAssistSts";
+CM_ SG_ 794 ADAS_AEB_Typ "AEB type for ICC";
+CM_ SG_ 794 ADAS_AEBWarnSts "AEB warning status";
+CM_ SG_ 794 ADAS_AEB_RAEB_WarnReq "Rear AEB warning request 
 ";
+CM_ SG_ 794 ADAS_RAEB_ThreatID "Rear AEB Object ID of the threat";
+CM_ SG_ 794 ADAS_AEBThreatID "AEB Threat ID";
+CM_ SG_ 794 ADAS_BACMThreatID "BACM threat identifier";
+CM_ SG_ 794 ADAS_BSM_ELKA_TelltaleReq " BSM-telltale on the cluster";
+CM_ SG_ 794 ADAS_ESA_TelltaleReq "ESA IDS(Instrument Cluster) Telltale request";
+CM_ SG_ 794 ADAS_ELKA_TelltaleReq "ELKA LKA IDS(Instrument Cluster) Telltale request";
 CM_ SG_ 796 ADAS_AccTrgSpdDisp "Automatic Cruise Control (ACC) target speed display";
 CM_ SG_ 796 ADAS_DispSpdUnit_ACC "Automatic Cruise Control (ACC) display unit";
 CM_ SG_ 796 ADAS_AccTrgSpdOvrLmt "Automatic Cruise Control (ACC) target speed over limit";
@@ -1181,6 +1266,16 @@ BA_ "GenMsgCycleTime" BO_ 532 10;
 BA_ "E2EP01DataLength" BO_ 532 64;
 BA_ "E2EP01DataId" BO_ 532 18;
 BA_ "VFrameFormat" BO_ 532 14;
+BA_ "GenMsgSendType" BO_ 788 0;
+BA_ "GenMsgILSupport" BO_ 788 1;
+BA_ "GenMsgCycleTime" BO_ 788 20;
+BA_ "E2EP01DataLength" BO_ 788 64;
+BA_ "E2EP01DataId" BO_ 788 78;
+BA_ "VFrameFormat" BO_ 788 14;
+BA_ "GenMsgSendType" BO_ 789 0;
+BA_ "GenMsgILSupport" BO_ 789 1;
+BA_ "GenMsgCycleTime" BO_ 789 50;
+BA_ "VFrameFormat" BO_ 789 14;
 BA_ "GenMsgSendType" BO_ 791 0;
 BA_ "GenMsgILSupport" BO_ 791 1;
 BA_ "GenMsgCycleTime" BO_ 791 50;
@@ -1193,6 +1288,12 @@ BA_ "GenMsgCycleTime" BO_ 792 20;
 BA_ "E2EP01DataLength" BO_ 792 64;
 BA_ "E2EP01DataId" BO_ 792 121;
 BA_ "VFrameFormat" BO_ 792 14;
+BA_ "GenMsgSendType" BO_ 794 0;
+BA_ "GenMsgILSupport" BO_ 794 1;
+BA_ "GenMsgCycleTime" BO_ 794 50;
+BA_ "E2EP01DataLength" BO_ 794 64;
+BA_ "E2EP01DataId" BO_ 794 55;
+BA_ "VFrameFormat" BO_ 794 14;
 BA_ "GenMsgSendType" BO_ 796 0;
 BA_ "GenMsgILSupport" BO_ 796 1;
 BA_ "GenMsgCycleTime" BO_ 796 50;
@@ -2031,6 +2132,97 @@ BA_ "sigSecLevel" SG_ 532 VCU_214_SSecOC_MAC_Byte2 "null";
 BA_ "sigExplanation" SG_ 532 VCU_214_SSecOC_MAC_Byte2 "null";
 BA_ "sigConfig" SG_ 532 VCU_214_SSecOC_MAC_Byte2 "null";
 BA_ "GenSigSendType" SG_ 532 VCU_214_SSecOC_MAC_Byte2 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_314_CheckSum "null";
+BA_ "sigExplanation" SG_ 788 ADAS_314_CheckSum "null";
+BA_ "sigConfig" SG_ 788 ADAS_314_CheckSum "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_314_CheckSum 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_314_AliveCounter "null";
+BA_ "sigExplanation" SG_ 788 ADAS_314_AliveCounter "null";
+BA_ "sigConfig" SG_ 788 ADAS_314_AliveCounter "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_314_AliveCounter 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_ESAState "B";
+BA_ "sigExplanation" SG_ 788 ADAS_ESAState "null";
+BA_ "sigConfig" SG_ 788 ADAS_ESAState "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_ESAState 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_LKASts "A";
+BA_ "sigExplanation" SG_ 788 ADAS_LKASts "null";
+BA_ "sigConfig" SG_ 788 ADAS_LKASts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_LKASts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_ELKASts "A";
+BA_ "sigExplanation" SG_ 788 ADAS_ELKASts "null";
+BA_ "sigConfig" SG_ 788 ADAS_ELKASts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_ELKASts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_LCA_Sts "A";
+BA_ "sigExplanation" SG_ 788 ADAS_LCA_Sts "null";
+BA_ "sigConfig" SG_ 788 ADAS_LCA_Sts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_LCA_Sts 0;
+BA_ "GenSigSendType" SG_ 788 ADAS_LCA_Maneuver_Status 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_APASts "null";
+BA_ "sigExplanation" SG_ 788 ADAS_APASts "null";
+BA_ "sigConfig" SG_ 788 ADAS_APASts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_APASts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_WSPPASts "null";
+BA_ "sigExplanation" SG_ 788 ADAS_WSPPASts "null";
+BA_ "sigConfig" SG_ 788 ADAS_WSPPASts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_WSPPASts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_DOW_Sts "null";
+BA_ "sigExplanation" SG_ 788 ADAS_DOW_Sts "null";
+BA_ "sigConfig" SG_ 788 ADAS_DOW_Sts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_DOW_Sts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_BSDSts "C";
+BA_ "sigExplanation" SG_ 788 ADAS_BSDSts "null";
+BA_ "sigConfig" SG_ 788 ADAS_BSDSts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_BSDSts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_DCAASts "B";
+BA_ "sigExplanation" SG_ 788 ADAS_DCAASts "null";
+BA_ "sigConfig" SG_ 788 ADAS_DCAASts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_DCAASts 0;
+BA_ "sigSecLevel" SG_ 788 ADAS_AHBA_Sts "null";
+BA_ "sigExplanation" SG_ 788 ADAS_AHBA_Sts "null";
+BA_ "sigConfig" SG_ 788 ADAS_AHBA_Sts "null";
+BA_ "GenSigSendType" SG_ 788 ADAS_AHBA_Sts 0;
+BA_ "GenSigSendType" SG_ 788 ADAS_AHBA_BeamDecisRsn 0;
+BA_ "GenSigCycleTime" SG_ 788 ADAS_AHBA_BeamDecisRsn 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DOW_ThreatIDLeft "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DOW_ThreatIDLeft "null";
+BA_ "sigConfig" SG_ 789 ADAS_DOW_ThreatIDLeft "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DOW_ThreatIDLeft 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DOW_ThreatIDRight "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DOW_ThreatIDRight "null";
+BA_ "sigConfig" SG_ 789 ADAS_DOW_ThreatIDRight "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DOW_ThreatIDRight 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DOW_CID_LeDispReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DOW_CID_LeDispReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_DOW_CID_LeDispReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DOW_CID_LeDispReq 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DOW_CID_RiDispReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DOW_CID_RiDispReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_DOW_CID_RiDispReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DOW_CID_RiDispReq 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_BSDLeftThreatID "null";
+BA_ "sigExplanation" SG_ 789 ADAS_BSDLeftThreatID "null";
+BA_ "sigConfig" SG_ 789 ADAS_BSDLeftThreatID "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_BSDLeftThreatID 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_BSDRightThreatID "null";
+BA_ "sigExplanation" SG_ 789 ADAS_BSDRightThreatID "null";
+BA_ "sigConfig" SG_ 789 ADAS_BSDRightThreatID "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_BSDRightThreatID 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_BSD_CID_LeDispReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_BSD_CID_LeDispReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_BSD_CID_LeDispReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_BSD_CID_LeDispReq 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_BSD_CID_RiDispReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_BSD_CID_RiDispReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_BSD_CID_RiDispReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_BSD_CID_RiDispReq 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DCAA_WarnLvlReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DCAA_WarnLvlReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_DCAA_WarnLvlReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DCAA_WarnLvlReq 0;
+BA_ "sigSecLevel" SG_ 789 ADAS_DCAA_GazeOnWarnReq "null";
+BA_ "sigExplanation" SG_ 789 ADAS_DCAA_GazeOnWarnReq "null";
+BA_ "sigConfig" SG_ 789 ADAS_DCAA_GazeOnWarnReq "null";
+BA_ "GenSigSendType" SG_ 789 ADAS_DCAA_GazeOnWarnReq 0;
 BA_ "sigSecLevel" SG_ 791 ADAS_317_CheckSum "null";
 BA_ "sigExplanation" SG_ 791 ADAS_317_CheckSum "null";
 BA_ "sigConfig" SG_ 791 ADAS_317_CheckSum "null";
@@ -2173,6 +2365,61 @@ BA_ "sigExplanation" SG_ 792 ESP_RDAEnaFlg "null";
 BA_ "sigConfig" SG_ 792 ESP_RDAEnaFlg "null";
 BA_ "GenSigStartValue" SG_ 792 ESP_RDAEnaFlg 0;
 BA_ "GenSigSendType" SG_ 792 ESP_RDAEnaFlg 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_31A_CheckSum "null";
+BA_ "sigExplanation" SG_ 794 ADAS_31A_CheckSum "null";
+BA_ "sigConfig" SG_ 794 ADAS_31A_CheckSum "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_31A_CheckSum 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_31A_AliveCounter "null";
+BA_ "sigExplanation" SG_ 794 ADAS_31A_AliveCounter "null";
+BA_ "sigConfig" SG_ 794 ADAS_31A_AliveCounter "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_31A_AliveCounter 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_RAEBAvl "null";
+BA_ "sigExplanation" SG_ 794 ADAS_RAEBAvl "null";
+BA_ "sigConfig" SG_ 794 ADAS_RAEBAvl "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_RAEBAvl 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_FACM_TelltaleReq "null";
+BA_ "sigExplanation" SG_ 794 ADAS_FACM_TelltaleReq "null";
+BA_ "sigConfig" SG_ 794 ADAS_FACM_TelltaleReq "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_FACM_TelltaleReq 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_BACM_WarnSide "null";
+BA_ "sigExplanation" SG_ 794 ADAS_BACM_WarnSide "null";
+BA_ "sigConfig" SG_ 794 ADAS_BACM_WarnSide "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_BACM_WarnSide 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_BrakeIntrvntnSt "C";
+BA_ "sigExplanation" SG_ 794 ADAS_BrakeIntrvntnSt "null";
+BA_ "sigConfig" SG_ 794 ADAS_BrakeIntrvntnSt "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_BrakeIntrvntnSt 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_AEB_Typ "null";
+BA_ "sigExplanation" SG_ 794 ADAS_AEB_Typ "null";
+BA_ "sigConfig" SG_ 794 ADAS_AEB_Typ "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_AEB_Typ 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_FACM_SenstvtyPrmpt "null";
+BA_ "sigExplanation" SG_ 794 ADAS_FACM_SenstvtyPrmpt "null";
+BA_ "sigConfig" SG_ 794 ADAS_FACM_SenstvtyPrmpt "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_FACM_SenstvtyPrmpt 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_AEBWarnSts "A";
+BA_ "sigExplanation" SG_ 794 ADAS_AEBWarnSts "null";
+BA_ "sigConfig" SG_ 794 ADAS_AEBWarnSts "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_AEBWarnSts 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_AEB_RAEB_WarnReq "null";
+BA_ "sigExplanation" SG_ 794 ADAS_AEB_RAEB_WarnReq "null";
+BA_ "sigConfig" SG_ 794 ADAS_AEB_RAEB_WarnReq "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_AEB_RAEB_WarnReq 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_RAEB_ThreatID "null";
+BA_ "sigExplanation" SG_ 794 ADAS_RAEB_ThreatID "null";
+BA_ "sigConfig" SG_ 794 ADAS_RAEB_ThreatID "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_RAEB_ThreatID 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_AEBThreatID "null";
+BA_ "sigExplanation" SG_ 794 ADAS_AEBThreatID "null";
+BA_ "sigConfig" SG_ 794 ADAS_AEBThreatID "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_AEBThreatID 0;
+BA_ "sigSecLevel" SG_ 794 ADAS_BACMThreatID "null";
+BA_ "sigExplanation" SG_ 794 ADAS_BACMThreatID "null";
+BA_ "sigConfig" SG_ 794 ADAS_BACMThreatID "null";
+BA_ "GenSigSendType" SG_ 794 ADAS_BACMThreatID 0;
+BA_ "GenSigSendType" SG_ 794 ADAS_BSM_ELKA_TelltaleReq 0;
+BA_ "GenSigSendType" SG_ 794 ADAS_ESA_TelltaleReq 0;
+BA_ "GenSigSendType" SG_ 794 ADAS_ELKA_TelltaleReq 0;
 BA_ "sigSecLevel" SG_ 796 ADAS_AccTrgSpdDisp "null";
 BA_ "sigExplanation" SG_ 796 ADAS_AccTrgSpdDisp "null";
 BA_ "sigConfig" SG_ 796 ADAS_AccTrgSpdDisp "null";
@@ -2871,6 +3118,24 @@ VAL_ 532 VCU_BrkSigVld 0 "Initializing" 1 "Valid" 2 "Invalid" 3 "Reserved" ;
 VAL_ 532 VCU_DrvModSigFb 0 "Eco" 1 "Normal" 2 "Sport" 3 "Custom" 4 "Snow" 5 "Offroad" 6 "Valet" 7 "Invalid" ;
 VAL_ 532 VCU_DrvModShiftMisoper 0 "Normal" 1 "Abnormal" ;
 VAL_ 532 VCU_SpclTerrainModEnaSig 0 "Not_enabled" 1 "Enable" ;
+VAL_ 788 ADAS_ESAState 0 "ESA_OffCoded" 1 "ESA_Off" 2 "Inactve" 3 "ESA_Actv_RequestTpfLT" 4 "ESA_Actv_RequestTpfRT" 5 "Actv_SteeringLT" 6 "Actv_SteeringRT" 7 "ESA_RampoutLe" 8 "ESA_RampoutRi" 9 "ESA_Error" 10 "Unavailable" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 788 ADAS_LKASts 0 "LKA_OffCoded" 1 "LKA_Off" 2 "Inactve" 3 "ReadyToAssist" 4 "LKA_WarningLT" 5 "LKA_WarningRT" 6 "Actv_SteeringLT" 7 "Actv_SteeringRT" 8 "LKA_Error" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 788 ADAS_ELKASts 0 "ELKA_OffCoded" 1 "LKA_Off" 2 "Inactve" 3 "ReadyToAssist" 4 "ELKA_WarningLT" 5 "ELKA_WarningRT" 6 "Actv_SteeringLT" 7 "Actv_SteeringRT" 8 "ELKA_Error" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 788 ADAS_LCA_Sts 0 "Off" 1 "Standby" 2 "Prepare_to_left_lane" 3 "Prepare_to_right_lane" 4 "Active_to_left" 5 "Active_to_right" 6 "Return" 7 "Error" 8 "Reserved" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 788 ADAS_LCA_Maneuver_Status 0 "No_Suppressed" 1 "LCA_Suppressed" ;
+VAL_ 788 ADAS_APASts 0 "Off" 1 "Initialize" 2 "Standby" 3 "Scanning" 4 "Slot_selected" 5 "Park_In" 6 "Park_Out" 7 "Aborted" 8 "Parking_complete" 9 "Fault" 10 "Park_Out_ready" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 788 ADAS_WSPPASts 0 "Off" 1 "On_standby" 2 "On_available" 3 "On_active" 4 "Off_fault" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 788 ADAS_DOW_Sts 0 "Off" 1 "On_standby" 2 "On_available" 3 "On_active" 4 "Off_fault" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 788 ADAS_BSDSts 0 "Off" 1 "On_standby" 2 "On_available" 3 "On_active" 4 "Error" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 788 ADAS_DCAASts 0 "Off" 1 "On_(Standby)" 2 "On_(available)" 3 "On_(active)" 4 "Off_(Fault)" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 788 ADAS_AHBA_Sts 0 "Off" 1 "On" 2 "Fault" 3 "Reserved" ;
+VAL_ 788 ADAS_AHBA_BeamDecisRsn 0 "Default" 1 "Low_speed" 2 "Oncoming" 3 "Preceding" 4 "Reflector" 5 "Illuminated_area" 6 "Failsafe" 7 "LitNight" 8 "Guardrail" 9 "BlinkingTrffcLi" 10 "Junction" 11 "Reserved" 12 "EgoTurning" ;
+VAL_ 789 ADAS_DOW_CID_LeDispReq 0 "Display_No_threat_both_door_closed" 1 "Display_threat_both_door_closed" 2 "Display_threat_front_door_open" 3 "Display_threat_rear_door_open" 4 "Display_threat_both_door_open" 5 "Display_no_threat_front_door_open" 6 "Display_no_threat_rear_door_open" 7 "Display_no_threat_both_door_open" ;
+VAL_ 789 ADAS_DOW_CID_RiDispReq 0 "No_threat_both_door_closed" 1 "Display_threat_both_door_closed" 2 "Display_threat_front_door_open" 3 "Display_threat_rear_door_open" 4 "Display_threat_both_door_open" 5 "Display_no_threat_front_door_open" 6 "Display_no_threat_rear_door_open" 7 "Display_no_threat_both_door_open" ;
+VAL_ 789 ADAS_BSD_CID_LeDispReq 0 "No_threat" 1 "Threat_present_on_left" 2 "Threat_present_on_left_and_turn_indicator_left_on" 3 "Critical_threat_present_on_left" 4 "Error" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 789 ADAS_BSD_CID_RiDispReq 0 "No_threat" 1 "Threat_present_on_right" 2 "Threat_present_on_right_and_turn_indicator_right_on" 3 "Critical_threat_present_on_right" 4 "Error" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 789 ADAS_DCAA_WarnLvlReq 0 "Off" 1 "On_Standby" 2 "Drowsy_level_1" 4 "Drowsy_level_2" 5 "Drowsy_level_3" 6 "Distraction_level_1" 7 "Distraction_level_2" 8 "Distraction_level_3" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
+VAL_ 789 ADAS_DCAA_GazeOnWarnReq 0 "No_gaze_on_warning_request" 1 "Gaze_on_warning_request" ;
 VAL_ 791 ADAS_LeMirrWarnSrc 0 "Not_Active" 1 "BSD" 2 "DOW" 3 "ELKA" 4 "Reserved" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
 VAL_ 791 ADAS_LeMirrWarnReq 0 "Not_Active" 1 "Active_warning_1" 2 "Active_warning_2" 3 "Reserved" ;
 VAL_ 791 ADAS_ChimeReq 0 "No_chime" 1 "Engagement" 2 "Disengagement" 3 "Fault_chime" 4 "Warning_light_amber" 5 "Warning_light_yellow" 6 "Warning_light_red" 7 "Overspeed" 8 "Cant_do_that" 9 "Parking_complete" 10 "Zone2" 11 "Zone3" 12 "Zone1" 13 "Reserved" 14 "Reserved" 15 "Reserved" ;
@@ -2897,6 +3162,17 @@ VAL_ 792 ESP_CtrlSts_HDC 0 "Off" 1 "On_Active_Braking" 2 "On_Not_Active_Braking"
 VAL_ 792 ESP_AvlIndcn_HDC 0 "Available" 1 "Not_Available" ;
 VAL_ 792 ESP_NoBrkP 0 "Exist_Brk_Force" 1 "No_Brk_Force" ;
 VAL_ 792 ESP_RDAEnaFlg 0 "Inactive_not_enabled" 1 "Active_enable" ;
+VAL_ 794 ADAS_RAEBAvl 0 "Available" 1 "Not_Available" ;
+VAL_ 794 ADAS_FACM_TelltaleReq 0 "FACM_Normal" 1 "FACM_Off" 2 "FACM_Fault_Degraded" 3 "FACM_Intervention" ;
+VAL_ 794 ADAS_BACM_WarnSide 0 "None" 1 "WarnLeft" 2 "WarnRight" 3 "Bothsides" 4 "Center" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 794 ADAS_BrakeIntrvntnSt 0 "Inactive" 1 "Lvl1" 2 "Lvl2" 3 "Brake_Assist" ;
+VAL_ 794 ADAS_AEB_Typ 0 "Not_Active" 1 "AEB_standard" 2 "AEB_VRU" 3 "LTAP_AEB" 4 "SCP_AEB" 5 "Rear_AEB" 6 "RCTB" 7 "Reserved" ;
+VAL_ 794 ADAS_FACM_SenstvtyPrmpt 0 "No_prompt" 1 "Prompt" ;
+VAL_ 794 ADAS_AEBWarnSts 0 "No_warning" 1 "Headway_warning" 2 "Pre-Warning" 3 "Acute_warning_stage_1" 4 "Acute_warning_stage_2" 5 "Reserved" 6 "Reserved" 7 "Reserved" ;
+VAL_ 794 ADAS_AEB_RAEB_WarnReq 0 "No_warning" 1 "Warning" ;
+VAL_ 794 ADAS_BSM_ELKA_TelltaleReq 0 "BSM_ELKA_Normal" 1 "BSM_ELKA_Off" 2 "BSM_ELKA_Inactive" 3 "BSM_ELKA_Fault_Degraded" 4 "BSM_ELKA_intervention" ;
+VAL_ 794 ADAS_ESA_TelltaleReq 0 "ESA_Normal" 1 "ESA_Off" 2 "ESA_Fault_Degraded" 3 "ESA_Intervention" ;
+VAL_ 794 ADAS_ELKA_TelltaleReq 0 "ELKA_LKA_Normal" 1 "ELKA_LKA_Off" 2 "ELKA_LKA_Fault_Degraded" 3 "ELKA_LKA_intervention" ;
 VAL_ 796 ADAS_AccTrgSpdDisp 0 "display" 1 "display" 2 "display" 3 "display" 4 "display" 5 "display" 6 "display" 7 "display" 8 "display" 9 "display" 10 "display" 11 "display" 12 "display" 13 "display" 14 "display" 15 "display" 16 "display" 17 "display" 18 "display" 19 "display" 20 "display" 21 "display" 22 "display" 23 "display" 24 "display" 25 "display" 26 "display" 27 "display" 28 "display" 29 "display" 30 "display" 31 "display" 32 "display" 33 "display" 34 "display" 35 "display" 36 "display" 37 "display" 38 "display" 39 "display" 40 "display" 41 "display" 42 "display" 43 "display" 44 "display" 45 "display" 46 "display" 47 "display" 48 "display" 49 "display" 50 "display" 51 "display" 52 "display" 53 "display" 54 "display" 55 "display" 56 "display" 57 "display" 58 "display" 59 "display" 60 "display" 61 "display" 62 "display" 63 "display" 64 "display" 65 "display" 66 "display" 67 "display" 68 "display" 69 "display" 70 "display" 71 "display" 72 "display" 73 "display" 74 "display" 75 "display" 76 "display" 77 "display" 78 "display" 79 "display" 80 "display" 81 "display" 82 "display" 83 "display" 84 "display" 85 "display" 86 "display" 87 "display" 88 "display" 89 "display" 90 "display" 91 "display" 92 "display" 93 "display" 94 "display" 95 "display" 96 "display" 97 "display" 98 "display" 99 "display" 100 "display" 101 "display" 102 "display" 103 "display" 104 "display" 105 "display" 106 "display" 107 "display" 108 "display" 109 "display" 110 "display" 111 "display" 112 "display" 113 "display" 114 "display" 115 "display" 116 "display" 117 "display" 118 "display" 119 "display" 120 "display" 121 "display" 122 "display" 123 "display" 124 "display" 125 "display" 126 "display" 127 "display" 128 "display" 129 "display" 130 "display" 131 "display" 132 "display" 133 "display" 134 "display" 135 "display" 136 "display" 137 "display" 138 "display" 139 "display" 140 "display" 141 "display" 142 "display" 143 "display" 144 "display" 145 "display" 146 "display" 147 "display" 148 "display" 149 "display" 150 "display" 151 "display" 152 "display" 153 "display" 154 "display" 155 "display" 156 "display" 157 "display" 158 "display" 159 "display" 160 "display" 161 "display" 162 "display" 163 "display" 164 "display" 165 "display" 166 "display" 167 "display" 168 "display" 169 "display" 170 "display" 171 "display" 172 "display" 173 "display" 174 "display" 175 "display" 176 "display" 177 "display" 178 "display" 179 "display" 180 "display" 181 "display" 182 "display" 183 "display" 184 "display" 185 "display" 186 "display" 187 "display" 188 "display" 189 "display" 190 "display" 191 "display" 192 "display" 193 "display" 194 "display" 195 "display" 196 "display" 197 "display" 198 "display" 199 "display" 200 "display" 201 "display" 202 "display" 203 "display" 204 "display" 205 "display" 206 "display" 207 "display" 208 "display" 209 "display" 210 "display" 211 "display" 212 "display" 213 "display" 214 "display" 215 "display" 216 "display" 217 "display" 218 "display" 219 "display" 220 "display" 221 "display" 222 "display" 223 "display" 224 "display" 225 "display" 226 "display" 227 "display" 228 "display" 229 "display" 230 "display" 231 "display" 232 "display" 233 "display" 234 "display" 235 "display" 236 "display" 237 "display" 238 "display" 239 "display" 240 "display" 241 "display" 242 "display" 243 "display" 244 "display" 245 "display" 246 "display" 247 "display" 248 "display" 249 "display" 250 "display" 251 "display" 252 "display" 253 "display" 254 "display" 255 "no_display" ;
 VAL_ 796 ADAS_DispSpdUnit_ACC 0 "KMH" 1 "MPH" ;
 VAL_ 796 ADAS_AccTrgSpdOvrLmt 0 "Target_speed_equal_or_less_than_limit" 1 "Target_speed_over_speed_limit" ;

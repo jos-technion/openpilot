@@ -122,6 +122,19 @@ class CarState(CarStateBase):
     ret.leftBlinker = bool(bcm335["BCM_LeTrunLampOutpCmd"])
     ret.rightBlinker = bool(bcm335["BCM_RiTrunLampOutpCmd"])
 
+    # ---- Blind spot monitoring ----
+    # The OEM ADAS module publishes BSM on 0x315 (BSD_CID_{Le,Ri}DispReq) with a 4-value
+    # threat enum (1=threat, 2=threat+turn-indicator, 3=critical) plus 0=No_threat and
+    # 4=Error. 0x314 carries ADAS_BSDSts (0=Off, 1=Standby, 2=Available, 3=Active, 4=Error);
+    # trust the display req only when BSDSts reports the feature is Available/Active — that
+    # way a BSM fault or user-disabled BSM doesn't spuriously block openpilot lane changes.
+    bsds_state = int(cp_pt.vl["ADAS_0x314"]["ADAS_BSDSts"])
+    bsm_available = bsds_state in (2, 3)
+    le_disp = int(cp_pt.vl["ADAS_0x315"]["ADAS_BSD_CID_LeDispReq"])
+    ri_disp = int(cp_pt.vl["ADAS_0x315"]["ADAS_BSD_CID_RiDispReq"])
+    ret.leftBlindspot = bsm_available and le_disp in (1, 2, 3)
+    ret.rightBlindspot = bsm_available and ri_disp in (1, 2, 3)
+
     # ---- Cruise state (VCU basic cruise control) ----
     # openpilot intercepts the ADAS module, so its ACC frames (0x313/0x31C) are on the
     # isolated side (bus 2) and not on the bus we read. The car uses the VCU's basic
@@ -190,11 +203,14 @@ class CarState(CarStateBase):
       ("YRS_0x113", 100),
       ("EPS_0x1C2", 50),
       ("EPS_0x1C4", 50),
-      # ADAS module frames (0x313/0x314/0x31A/0x31C) live on the isolated intercept side
-      # (bus 2), not on the bus we read — openpilot replaces that module. Cruise is taken
-      # from the VCU's basic CC below instead.
+      # ADAS module frames originate on the isolated intercept side (bus 2). Cruise is
+      # replaced (openpilot supplies its own via VCU basic CC below). BSM is NOT replaced —
+      # the OEM ADAS module still runs blind-spot detection and panda forwards its 0x314
+      # (feature status) and 0x315 (display request) to bus 0, so we tap them here.
       # Freqs are the real on-vehicle rates; over-declaring makes the CANParser flag a
       # message stale -> carState.canValid=False -> commIssue. Measured on ADASBUS.
+      ("ADAS_0x314", 50),   # BSDSts, LKASts, ELKASts (feature availability enums)
+      ("ADAS_0x315", 20),   # BSD_CID_{Le,Ri}DispReq (blind-spot display request)
       ("VCU_0x358", 10),    # basic cruise-control (CC) state + set speed (~10 Hz)
       ("ICC_0x531", 10),
       ("GW_Syn_All", 2),    # SecOC sync (~3 Hz)
