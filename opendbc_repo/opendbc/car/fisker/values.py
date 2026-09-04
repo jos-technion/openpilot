@@ -104,15 +104,11 @@ SECOC_TX_MSGS = {
 SECOC_SYNC_MSG = (0x20, "GW_Syn_All")    # 50 ms, full 40-bit freshness on wire
 
 
-FW_QUERY_CONFIG = FwQueryConfig(
-  requests=[
-    Request(
-      [StdQueries.TESTER_PRESENT_REQUEST, StdQueries.UDS_VERSION_REQUEST],
-      [StdQueries.TESTER_PRESENT_RESPONSE, StdQueries.UDS_VERSION_RESPONSE],
-      bus=0,
-    ),
-  ],
-)
+# No FW-version fingerprinting for Fisker: FW_VERSIONS is intentionally empty
+# (single-model port, CAN fingerprint is authoritative), so declare zero requests
+# to keep the brand out of fw_versions.get_brand_ecu_matches — otherwise upstream's
+# `len(brand_matches[b])` divide-by-zero crashes card at startup.
+FW_QUERY_CONFIG = FwQueryConfig(requests=[])
 
 
 DBC = CAR.create_dbc_map()
