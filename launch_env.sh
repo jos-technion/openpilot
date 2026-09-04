@@ -20,3 +20,8 @@ if [ -z "$AGNOS_VERSION" ]; then
 fi
 
 export STAGING_ROOT="/data/safe_staging"
+
+# fisker: FW_VERSIONS is intentionally empty (single-model port, CAN fingerprint is
+# authoritative). Skip FW/VIN querying — otherwise fw_versions.get_fw_versions_ordered
+# divides by len(brand_matches[b])==0 and card crashes at startup.
+export SKIP_FW_QUERY=1
